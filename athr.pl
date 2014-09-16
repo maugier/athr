@@ -27,6 +27,8 @@ while(<>) {
         $nicks->{$4}{'grouped'}{$4} = 1;
     } elsif (m/$nickserv> ($nick_re) F?DROP: ($nick_re)/o) {
         delete $nicks->{$2};
+    } elsif (m/$chanserv> ($nick_re) REGISTER: ($chan_re)/o) {
+        $chans->{$2}{'founder'} = $1;
     } elsif (m/$chanserv> ($nick_re) DROP: ($chan_re)/o) {
         delete $chans->{$2};
     }
